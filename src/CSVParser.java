@@ -12,7 +12,8 @@ public class CSVParser {
 
     void parse(File fin, File fout) {
         while (!((str = readers.readWord(fin)).toString().equals("-1")))
-            b.insertWord(str);
+            if (!(str.toString().equals("")))
+                b.insertWord(str);
         b.printMap(fout);
     }
 }
