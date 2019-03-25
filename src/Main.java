@@ -1,4 +1,5 @@
 import java.io.*;
+import java.io.Reader;
 
 public class Main {
 
@@ -7,10 +8,7 @@ public class Main {
         File fout = new File(args[1]);
 
         CSVParser a = new CSVParser();
-        a.readWord(fin);
-        a.printMap(fout);
-
-
+        a.parse(fin, fout);
     }
 
 }
