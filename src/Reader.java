@@ -12,20 +12,20 @@ public class Reader implements Readable {
     }
 
     public StringBuilder readWord(File fin) {
-        int i = -1;
+        int letter = -1;
         StringBuilder buff = new StringBuilder();
 
         try {
-            i = reader.read();
-            while (((i != -1) && (Character.isLetterOrDigit(i)))) {
-                        buff.append((char)i);
-                        i = reader.read();
+            letter = reader.read();
+            while (((letter != -1) && (Character.isLetterOrDigit(letter)))) {
+                        buff.append((char)letter);
+                        letter = reader.read();
                     }
         }
         catch (IOException e) {
             e.printStackTrace();
         }
-        if (i == -1 && buff.toString().equals(""))
+        if (letter == -1 && buff.toString().equals(""))
             return buff.append(-1);
         return buff;
     }

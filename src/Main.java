@@ -5,7 +5,9 @@ public class Main {
         File fin = new File(args[0]);
         File fout = new File(args[1]);
 
-        CSVParser a = new CSVParser(fin, fout);
-        a.parse(fin, fout);
+        CSVParser csvParser = new CSVParser(fin, fout);
+        csvParser.parse(fin, fout);
+
+        
     }
 }

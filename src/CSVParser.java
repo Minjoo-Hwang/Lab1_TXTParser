@@ -6,7 +6,7 @@ class CSVParser {
     private Reader reader;
     private Writer writer;
 
-    public CSVParser(File fin, File fout) {
+    CSVParser(File fin, File fout) {
         this.fin = fin;
         this.fout = fout;
         this.reader = new Reader(fin);
@@ -21,3 +21,4 @@ class CSVParser {
         writer.writeText(fout);
     }
 }
+
