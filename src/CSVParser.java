@@ -1,20 +1,23 @@
 import java.io.*;
-import java.util.*;
 
-public class CSVParser {
+class CSVParser {
+    private File fin;
+    private File fout;
+    private Reader reader;
+    private Writer writer;
 
-    File fin = new File("C:\\Users\\A\\IdeaProjects\\Lab1_SCVParser\\in.txt");
-
-    Readers readers = new Readers(fin);
-    StringBuilder buff = new StringBuilder();
-    Writer b = new Writer();
-    StringBuilder str = new StringBuilder();
+    public CSVParser(File fin, File fout) {
+        this.fin = fin;
+        this.fout = fout;
+        this.reader = new Reader(fin);
+        this.writer = new Writer();
+    }
 
     void parse(File fin, File fout) {
-        while (!((str = readers.readWord(fin)).toString().equals("-1")))
+        StringBuilder str;
+        while (!((str = reader.readWord(fin)).toString().equals("-1")))
             if (!(str.toString().equals("")))
-                b.insertWord(str);
-        b.printMap(fout);
+                writer.insertWord(str);
+        writer.writeText(fout);
     }
 }
-

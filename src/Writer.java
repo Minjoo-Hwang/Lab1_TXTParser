@@ -3,13 +3,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-public class Writer implements Writable {
-
+class Writer implements Writable {
     private Map<String, Integer> map = new HashMap<String, Integer>();
     private double wordCounter = 0;
-    private Map<String, Integer> map2 = new HashMap<String, Integer>();
 
-    public void insertWord(StringBuilder str) {
+    void insertWord(StringBuilder str) {
         String str1 = str.toString();
         if (map.containsKey(str1))
             map.put(str1, map.get(str1) + 1);
@@ -21,7 +19,7 @@ public class Writer implements Writable {
         // creating list from elements of HashMap
         List<Map.Entry<String, Integer> > list = new LinkedList<Map.Entry<String, Integer> >(hm.entrySet());
         // sorting list
-        Collections.sort(list, new Comparator<Map.Entry<String, Integer> >() {
+        list.sort(new Comparator<Map.Entry<String, Integer>>() {
             public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
                 return (o2.getValue()).compareTo(o1.getValue());
             }
@@ -33,19 +31,19 @@ public class Writer implements Writable {
         }
         return ha;
     }
-    public void printMap(File file) {
+    public void writeText(File file) {
 
         try {
             FileWriter writer = new FileWriter(file);
-            map2 = sortByValue((HashMap<String, Integer>) map);
+            Map<String, Integer> map2 = sortByValue((HashMap<String, Integer>) map);
             for (String name: map2.keySet()) {
                 String key = name.toString();
                 String value = map2.get(name).toString();
-                Double value2 = (double)map2.get(name);
+                double value2 = (double) map2.get(name);
                 value2 = value2 / wordCounter;
-                writer.append(key +'\t');
-                writer.append(value + '\t');
-                writer.append(Double.toString(value2) + '\n');
+                writer.append(key).append(String.valueOf('\t')).append(String.valueOf('\t'));
+                writer.append(value).append(String.valueOf('\t')).append(String.valueOf('\t'));
+                writer.append(Double.toString(value2)).append(String.valueOf('%')).append(String.valueOf('\n'));
                 writer.flush();
             }
         } catch (IOException e) {
@@ -53,5 +51,4 @@ public class Writer implements Writable {
         }
 
     }
-
 }
