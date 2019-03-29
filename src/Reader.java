@@ -3,30 +3,23 @@ import java.io.*;
 public class Reader implements Readable {
     private InputStreamReader reader = null;
 
-    Reader(File fin) {
-        try {
+    Reader(File fin) throws FileNotFoundException {
             reader = new InputStreamReader(new FileInputStream(fin));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
-    public StringBuilder readWord(File fin) {
+    public String readWord(File fin) throws IOException {
         int letter = -1;
         StringBuilder buff = new StringBuilder();
 
-        try {
             letter = reader.read();
             while (((letter != -1) && (Character.isLetterOrDigit(letter)))) {
                         buff.append((char)letter);
                         letter = reader.read();
                     }
+        if (letter == -1 && buff.toString().equals("")) {
+            return  null;
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (letter == -1 && buff.toString().equals(""))
-            return buff.append(-1);
-        return buff;
+
+        return buff.toString();
     }
 }

@@ -1,5 +1,5 @@
 import java.io.*;
 
 interface Readable {
-    StringBuilder readWord(File file);
+    String readWord(File file) throws IOException;
 }

@@ -1,22 +1,22 @@
 import java.io.*;
 
-class CSVParser {
+class TXTParser {
     private File fin;
     private File fout;
     private Reader reader;
     private Writer writer;
 
-    CSVParser(File fin, File fout) {
+    TXTParser(File fin, File fout) throws FileNotFoundException {
         this.fin = fin;
         this.fout = fout;
         this.reader = new Reader(fin);
         this.writer = new Writer();
     }
 
-    void parse(File fin, File fout) {
-        StringBuilder str;
-        while (!((str = reader.readWord(fin)).toString().equals("-1")))
-            if (!(str.toString().equals("")))
+    void parse(File fin, File fout) throws IOException {
+        String str;
+        while ((str = reader.readWord(fin)) != null)
+            if (!(str.equals("")))
                 writer.insertWord(str);
         writer.writeText(fout);
     }
